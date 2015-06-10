@@ -61,7 +61,8 @@ leaflet_helper.layer_conversion = function (lyr, map) {
     } else if (lyr.type == 'WMTS') {
         // this seems a bit fussy, so will make sure we can create this without errors
         try {
-            outputLayer = new L.tileLayer(lyr.url, layerOptions);
+            layerOptions.layer = layerOptions.layers;
+            outputLayer = new L.tileLayer.wmts(lyr.url, layerOptions);
         }
         catch (e) {
             log.warn('Unable to create WMTS layer: ' + e.toString());
